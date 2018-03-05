@@ -19,25 +19,31 @@ plugins {
     id 'groovy'
     id 'nebula.kotlin' version '1.2.30'
 
-// test coverage
+    // documentation
+    id "org.jetbrains.dokka" version "0.9.16"
+
+    // code analysis for kotlin
+    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC6-3"
+
+    // test coverage
     id 'jacoco'
 
-// ide plugin
+    // ide plugin
     id 'idea'
 
-// publish plugin
+    // publish plugin
     id 'maven-publish'
 
-// intershop version plugin
+    // intershop version plugin
     id 'com.intershop.gradle.scmversion' version '3.4.0'
 
-// plugin for documentation
+    // plugin for documentation
     id 'org.asciidoctor.convert' version '1.5.3'
 
-// plugin for publishing to Gradle Portal
+    // plugin for publishing to Gradle Portal
     id 'com.gradle.plugin-publish' version '0.9.9'
 
-// plugin for publishing to jcenter
+    // plugin for publishing to jcenter
     id 'com.jfrog.bintray' version '1.8.0'
 }
 
@@ -61,6 +67,15 @@ compileKotlin {
 // set correct project status
 if (project.version.endsWith('-SNAPSHOT')) {
     status = 'snapshot'
+}
+
+detekt {
+    version = "1.0.0.RC6-3"
+    profile("main") {
+        input = "$projectDir/src/main/kotlin"
+        config = "$projectDir/detekt.yml"
+        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+    }
 }
 
 task copyAsciiDoc {
@@ -113,10 +128,14 @@ jacocoTestReport {
     }
 }
 
-task groovydocJar(type: Jar) {
-    dependsOn groovydoc
+dokka {
+    outputFormat = 'html'
+}
+
+task kotlindocJar(type: Jar) {
+    dependsOn dokka
     classifier = 'javadoc'
-    from groovydoc.destinationDir
+    from dokka.outputDirectory
 }
 
 // additional sources artifact
@@ -133,7 +152,7 @@ publishing {
                 classifier 'sources'
             }
 
-            artifact groovydocJar {
+            artifact kotlindocJar {
                 classifier "javadoc"
             }
 
@@ -205,7 +224,9 @@ dependencies {
     compileOnly 'org.jetbrains:annotations:15.0'
 
     compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.4.1'
+    compile 'org.slf4j:slf4j-api:1.7.25'
 
+    testCompile "org.codehaus.groovy:groovy-all:2.4.13"
     testCompile 'commons-io:commons-io:2.2'
     testCompile 'com.intershop.gradle.test:test-gradle-plugin:3.0.0'
 }

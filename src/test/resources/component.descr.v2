@@ -1,0 +1,30 @@
+{
+  "displayName" : "TestComponent",
+  "componentDescription" : "Component for tests",
+  "modules" : { },
+  "libs" : {
+    "com.intershop.platform:core:14.0.0" : {
+      "dependency" : {
+        "group" : "com.intershop.platform",
+        "module" : "core",
+        "version" : "14.0.0"
+      },
+      "targetName" : "libs",
+      "types" : [ ]
+    },
+    "com.intershop.platform:isml:14.0.0" : {
+      "dependency" : {
+        "group" : "com.intershop.platform",
+        "module" : "isml",
+        "version" : "14.0.0"
+      },
+      "targetName" : "libs",
+      "types" : [ ]
+    }
+  },
+  "packages" : [ ],
+  "metadata" : {
+    "creation" : 1520630779701,
+    "version" : "v2"
+  }
+}
