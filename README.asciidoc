@@ -6,6 +6,9 @@ Note: This library requires Gradle 4 and JDK 8
 
 Note: This library is under development and not final released.
 
+image:https://travis-ci.org/IntershopCommunicationsAG/component-descriptor.svg?branch=master["Build Status", link="https://travis-ci.org/IntershopCommunicationsAG/component-descriptor"]
+image:https://api.codacy.com/project/badge/Grade/46ef2ce19e974d5aaac3c40f48c2fbf2["Codacy code quality", link="https://www.codacy.com/app/IntershopCommunicationsAG/component-descriptor?utm_source=github.com&utm_medium=referral&utm_content=IntershopCommunicationsAG/component-descriptor&utm_campaign=Badge_Grade"]
+image:https://api.bintray.com/packages/intershopcommunicationsag/maven/component-descriptor/images/download.svg?version=1.0.0-dev.3[link="https://bintray.com/intershopcommunicationsag/maven/component-descriptor/1.0.0-dev.3/link"]
 
 == License
 
