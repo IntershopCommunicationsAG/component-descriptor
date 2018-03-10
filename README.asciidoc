@@ -1,4 +1,4 @@
-= Component Desriptor for Component Deployment
+= Desriptor to Install a Component
 :latestRevision: 1.0.0
 :icons: font
 
