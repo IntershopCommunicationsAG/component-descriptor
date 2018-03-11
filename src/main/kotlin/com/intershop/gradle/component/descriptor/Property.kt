@@ -16,6 +16,9 @@
 package com.intershop.gradle.component.descriptor
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.intershop.gradle.component.descriptor.items.ComponentItem
+import com.intershop.gradle.component.descriptor.items.DeploymentItem
+import com.intershop.gradle.component.descriptor.items.OSSpecificItem
 import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
 
 /**
@@ -23,7 +26,8 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  *
  * @property key property key of special deployment property
  * @property value property value of special deployment property
- * @property contentType    content type of this file (default value is 'STATIC')
+ *
+ * @property contentType    content type of this file (default value is 'IMMUTABLE')
  * @property types          deployment or environment types (default is an empty set)
  * @property classifiers    OS specific usage of this file (default is an empty set)
  * @constructor provides a configured property object
@@ -33,8 +37,8 @@ data class Property @JvmOverloads constructor(
         val value: String,
 
         @JsonDeserialize(using = ContentTypeDeserializer::class)
-        val contentType: ContentType = ContentType.STATIC,
+        override val contentType: ContentType = ContentType.IMMUTABLE,
 
-        val types: MutableSet<String> = mutableSetOf(),
-        val classifiers: MutableSet<String> = mutableSetOf()
-)
+        override val types: MutableSet<String> = mutableSetOf(),
+        override val classifiers: MutableSet<String> = mutableSetOf()
+) : ComponentItem, DeploymentItem, OSSpecificItem

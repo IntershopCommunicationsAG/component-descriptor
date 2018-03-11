@@ -33,20 +33,20 @@ enum class ContentType(val description: String) {
      * Static content - can be installed without any exception. Old content
      * will be replaced by new one.
      */
-    STATIC("staticContent"),
+    IMMUTABLE("Immutable / Static Content"),
     /**
      * Data content - must be special handled during a
      * deployment. Existing content can not be replaced easily.
      */
-    DATA("dataContent"),
+    DATA("Data Content"),
     /**
      * Configuration content - this content must be adapted during the
      * installation.
      */
-    CONFIGURATION("configurationContent"),
+    CONFIGURATION("Configuration Content"),
     /**
-     * Unspecified content
+     * Unspecified content.
      */
-    UNSPECIFIED("unspecifiedContent")
+    UNSPECIFIED("Unspecified Content")
 
 }

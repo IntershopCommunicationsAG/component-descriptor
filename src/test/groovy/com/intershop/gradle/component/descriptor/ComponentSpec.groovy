@@ -120,8 +120,8 @@ class ComponentSpec extends Specification {
         given:
         def file = new File(testProjectDir, "component.descr")
         def componentIn = new Component('TestComponent', "Component for tests")
-        componentIn.addFileContainer(new FileContainer("cartridge", "component", "cartridge", ContentType.STATIC))
-        componentIn.addFileContainer(new FileContainer("share", "share", "share", ContentType.STATIC))
+        componentIn.addFileContainer(new FileContainer("cartridge", "component", "cartridge"))
+        componentIn.addFileContainer(new FileContainer("share", "share", "share"))
 
         when:
         ComponentUtil.INSTANCE.writeToFile(componentIn, file)
@@ -141,8 +141,8 @@ class ComponentSpec extends Specification {
         given:
         def file = new File(testProjectDir, "component.descr")
         def componentIn = new Component('TestComponent', "Component for tests")
-        componentIn.addFileItem(new FileItem("configuration", "properties", ContentType.STATIC, "share"))
-        componentIn.addFileItem(new FileItem("configuration", "xml", ContentType.STATIC, "share"))
+        componentIn.addFileItem(new FileItem("configuration", "properties", "share", ContentType.IMMUTABLE))
+        componentIn.addFileItem(new FileItem("configuration", "xml", "share", ContentType.IMMUTABLE))
 
         when:
         ComponentUtil.INSTANCE.writeToFile(componentIn, file)

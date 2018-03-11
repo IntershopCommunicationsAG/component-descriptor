@@ -43,7 +43,7 @@ class ContentTypeDeserializer : JsonDeserializer<ContentType>() {
      */
     override fun deserialize(parser: JsonParser, context: DeserializationContext): ContentType {
 
-        val jsonValue = parser.getValueAsString()
+        val jsonValue = parser.valueAsString
         var returnContentType: ContentType = ContentType.UNSPECIFIED
 
         try {

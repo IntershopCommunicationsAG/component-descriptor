@@ -17,6 +17,9 @@
 package com.intershop.gradle.component.descriptor
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.intershop.gradle.component.descriptor.items.ComponentItem
+import com.intershop.gradle.component.descriptor.items.DeploymentItem
+import com.intershop.gradle.component.descriptor.items.OSSpecificItem
 import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
 
 /**
@@ -25,20 +28,22 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  *
  * @property name           file name
  * @property extension      file extension
- * @property contentType    content type of this file (default value is 'STATIC')
  * @property targetPath     target path of the file in an installed component (default is an empty string)
+ *
+ * @property contentType    content type of this container (default value is 'STATIC')
  * @property types          deployment or environment types (default is an empty set)
- * @property classifiers    OS specific usage of this file (default is an empty set)
+ * @property classifiers     OS specific usage of this file container (default is an empty string)
  * @constructor provides a file item object of the component
  */
 data class FileItem @JvmOverloads constructor(
         val name: String = "",
         val extension: String = "",
 
-        @JsonDeserialize(using = ContentTypeDeserializer::class)
-        val contentType: ContentType = ContentType.STATIC,
-
         val targetPath: String = "",
-        val types: MutableSet<String> = mutableSetOf(),
-        val classifiers: MutableSet<String> = mutableSetOf()
-)
+
+        @JsonDeserialize(using = ContentTypeDeserializer::class)
+        override val contentType: ContentType = ContentType.IMMUTABLE,
+
+        override val types: MutableSet<String> = mutableSetOf(),
+        override val classifiers: MutableSet<String> = mutableSetOf()
+) : ComponentItem, DeploymentItem, OSSpecificItem

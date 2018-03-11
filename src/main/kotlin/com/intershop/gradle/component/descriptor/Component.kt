@@ -40,11 +40,13 @@ data class Component @JvmOverloads constructor(
 
         val modulesTarget: String = "modules",
         val libsTarget: String = "libs",
+
         val modules: MutableMap<String, Module> = mutableMapOf(),
         val libs: MutableMap<String, Library> = mutableMapOf(),
         val fileContainers: MutableSet<FileContainer> = mutableSetOf(),
         val fileItems: MutableSet<FileItem> = mutableSetOf(),
         val properties: MutableSet<Property> = mutableSetOf(),
+
         val metadata: MetaData = ComponentUtil.metadata
 ) {
 
@@ -84,7 +86,7 @@ data class Component @JvmOverloads constructor(
         if(modules.containsKey(targetPath)) {
             throw InvalidTargetPathException("TargetPath $targetPath is configured for an other module")
         }
-        if(modules.keys.filter { it.startsWith(targetPath) }.size > 0) {
+        if(modules.keys.filter { it.startsWith(targetPath) }.isNotEmpty()) {
             throw InvalidTargetPathException("Other modules are configured with the same targetPath $targetPath.")
         }
 
@@ -102,8 +104,7 @@ data class Component @JvmOverloads constructor(
         val dep = getDependencyFrom(dependency)
 
         modules[dep.module] = Module(
-                dep.module, dep.module, getDependencyFrom(dependency), ContentType.STATIC,
-                mutableSetOf(), mutableSetOf(), mutableSetOf(), false)
+                dep.module, dep.module, getDependencyFrom(dependency))
     }
 
     /**

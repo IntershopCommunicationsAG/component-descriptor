@@ -13,20 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.intershop.gradle.component.descriptor
 
-import com.intershop.gradle.component.descriptor.items.DeploymentItem
+package com.intershop.gradle.component.descriptor.items
+
+import com.intershop.gradle.component.descriptor.ContentType
 
 /**
- * This object provides a library of this component.
- *
- * @property dependency     dependency object of the library
- * @property targetName     name of the installed library
- *
- * @property types          deployment or environment types (default is an empty set)
+ * This interface provides basic methods of a component item.
  */
-data class Library @JvmOverloads constructor(
-        val dependency: Dependency,
-        val targetName: String,
-        override val types: MutableSet<String> = mutableSetOf()
-) : DeploymentItem
+interface ComponentItem {
+
+    /**
+     * Content type of this file.
+     */
+    val contentType: ContentType
+}
