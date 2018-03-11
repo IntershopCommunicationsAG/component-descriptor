@@ -118,6 +118,10 @@ asciidoctor {
 
 asciidoctor.dependsOn copyAsciiDoc
 
+jacoco {
+    toolVersion = "0.8.0"
+}
+
 jacocoTestReport {
     reports {
         xml.enabled = true // coveralls plugin depends on xml format report
@@ -217,6 +221,20 @@ bintray {
 
 bintrayUpload.dependsOn asciidoctor
 
+configurations { codacy }
+
+task sendCoverageToCodacy(type: JavaExec, dependsOn: jacocoTestReport) {
+    main = "com.codacy.CodacyCoverageReporter"
+    classpath = configurations.codacy
+    args = [
+            "report",
+            "-l",
+            "Java",
+            "-r",
+            "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+    ]
+}
+
 dependencies {
     compileOnly 'org.jetbrains:annotations:15.0'
 
@@ -226,6 +244,8 @@ dependencies {
     testCompile "org.codehaus.groovy:groovy-all:2.4.13"
     testCompile 'commons-io:commons-io:2.2'
     testCompile 'com.intershop.gradle.test:test-gradle-plugin:3.0.0'
+
+    codacy 'com.codacy:codacy-coverage-reporter:3.0.0'
 }
 
 repositories {
