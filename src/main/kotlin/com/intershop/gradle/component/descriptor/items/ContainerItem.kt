@@ -25,4 +25,9 @@ interface ContainerItem {
      * If the target path is included in the file container it returns true.
      */
     val targetIncluded: Boolean
+
+    /**
+     * Target path of the container item.
+     */
+    val targetPath: String
 }

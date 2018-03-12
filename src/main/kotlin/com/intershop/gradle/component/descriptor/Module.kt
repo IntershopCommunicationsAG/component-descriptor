@@ -42,7 +42,7 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  */
 data class Module @JvmOverloads constructor(
         val name: String,
-        val targetPath: String,
+        override val targetPath: String,
         val dependency: Dependency,
 
         val pkgs: MutableSet<String> = mutableSetOf(),
@@ -55,4 +55,4 @@ data class Module @JvmOverloads constructor(
 
         override val types: MutableSet<String> = mutableSetOf(),
         override val classifiers: MutableSet<String> = mutableSetOf()
-) : ComponentItem, DeploymentItem, ContainerItem, OSSpecificItem
+) : ComponentItem, DeploymentItem, OSSpecificItem, ContainerItem

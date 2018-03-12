@@ -38,7 +38,7 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  */
 data class FileContainer @JvmOverloads constructor(
         val name: String,
-        val targetPath: String,
+        override val targetPath: String,
         val containerType: String,
         val classifier: String = "",
 
