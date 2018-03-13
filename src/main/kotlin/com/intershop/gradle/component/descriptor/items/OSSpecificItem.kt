@@ -24,5 +24,5 @@ interface OSSpecificItem {
     /**
      * OS specific usage of a component.
      */
-    val classifiers: MutableSet<String>
+    val classifier: String
 }

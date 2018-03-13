@@ -45,5 +45,5 @@ data class FileItem @JvmOverloads constructor(
         override val contentType: ContentType = ContentType.IMMUTABLE,
 
         override val types: MutableSet<String> = mutableSetOf(),
-        override val classifiers: MutableSet<String> = mutableSetOf()
+        override val classifier: String = ""
 ) : ComponentItem, DeploymentItem, OSSpecificItem

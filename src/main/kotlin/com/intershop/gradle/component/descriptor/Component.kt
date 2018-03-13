@@ -27,6 +27,7 @@ import com.intershop.gradle.component.descriptor.util.ComponentUtil
  * @property componentDescription description of the component
  * @property modulesTarget installation target of all specified modules
  * @property types all supported types of this component
+ * @property classifiers all supported classifiers/OS
  * @property libsTarget installation target of all component libraries
  * @property fileTarget installation target of all single files
  * @property containerTarget installation target of all containers
@@ -43,6 +44,7 @@ data class Component @JvmOverloads constructor(
         val componentDescription: String,
 
         override val types: MutableSet<String> = mutableSetOf(),
+        val classifiers: MutableSet<String> = mutableSetOf(),
 
         val modulesTarget: String = "modules",
         val libsTarget: String = "libs",
