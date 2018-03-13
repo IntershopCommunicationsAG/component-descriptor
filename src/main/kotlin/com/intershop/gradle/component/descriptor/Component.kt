@@ -16,6 +16,7 @@
 package com.intershop.gradle.component.descriptor
 
 import com.intershop.gradle.component.descriptor.exceptions.InvalidTargetPathException
+import com.intershop.gradle.component.descriptor.items.DeploymentItem
 import com.intershop.gradle.component.descriptor.util.ComponentUtil
 
 /**
@@ -25,7 +26,10 @@ import com.intershop.gradle.component.descriptor.util.ComponentUtil
  * @property displayName display name of the component
  * @property componentDescription description of the component
  * @property modulesTarget installation target of all specified modules
+ * @property types all supported types of this component
  * @property libsTarget installation target of all component libraries
+ * @property fileTarget installation target of all single files
+ * @property containerTarget installation target of all containers
  * @property modules map of all modules of the component. The key describes the target path in the component.
  * @property libs map of all libraries. The key is the target name on the file system.
  * @property fileContainers a set of all available file containers (zip files)
@@ -38,8 +42,12 @@ data class Component @JvmOverloads constructor(
         val displayName: String,
         val componentDescription: String,
 
+        override val types: MutableSet<String> = mutableSetOf(),
+
         val modulesTarget: String = "modules",
         val libsTarget: String = "libs",
+        val fileTarget: String = "properties",
+        val containerTarget: String = "",
 
         val modules: MutableMap<String, Module> = mutableMapOf(),
         val libs: MutableMap<String, Library> = mutableMapOf(),
@@ -48,7 +56,7 @@ data class Component @JvmOverloads constructor(
         val properties: MutableSet<Property> = mutableSetOf(),
 
         val metadata: MetaData = ComponentUtil.metadata
-) {
+) : DeploymentItem {
 
     companion object {
         /**
