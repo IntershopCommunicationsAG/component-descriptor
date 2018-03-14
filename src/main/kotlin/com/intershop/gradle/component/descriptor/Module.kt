@@ -19,7 +19,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.intershop.gradle.component.descriptor.items.ComponentItem
 import com.intershop.gradle.component.descriptor.items.ContainerItem
 import com.intershop.gradle.component.descriptor.items.DeploymentItem
-import com.intershop.gradle.component.descriptor.items.OSSpecificItem
 import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
 
 /**
@@ -54,5 +53,5 @@ data class Module @JvmOverloads constructor(
         override val contentType: ContentType = ContentType.IMMUTABLE,
 
         override val types: MutableSet<String> = mutableSetOf(),
-        override val classifier: String = ""
-) : ComponentItem, DeploymentItem, OSSpecificItem, ContainerItem
+        val classifiers: MutableSet<String> = mutableSetOf()
+) : ComponentItem, DeploymentItem, ContainerItem

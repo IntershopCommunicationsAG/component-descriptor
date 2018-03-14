@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.intershop.gradle.component.descriptor.items.ComponentItem
 import com.intershop.gradle.component.descriptor.items.ContainerItem
 import com.intershop.gradle.component.descriptor.items.DeploymentItem
+import com.intershop.gradle.component.descriptor.items.OSSpecificItem
 import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
 
 /**
@@ -40,7 +41,7 @@ data class FileContainer @JvmOverloads constructor(
         val name: String,
         override val targetPath: String,
         val containerType: String,
-        val classifier: String = "",
+        override val classifier: String = "",
 
         override val targetIncluded: Boolean = false,
 
@@ -49,4 +50,4 @@ data class FileContainer @JvmOverloads constructor(
 
         override val types: MutableSet<String> = mutableSetOf()
 
-) : ComponentItem, DeploymentItem, ContainerItem
+) : ComponentItem, DeploymentItem, ContainerItem, OSSpecificItem
