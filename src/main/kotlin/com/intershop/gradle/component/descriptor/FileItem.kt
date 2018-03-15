@@ -30,9 +30,9 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  * @property extension      file extension
  * @property targetPath     target path of the file in an installed component (default is an empty string)
  *
+ * @property classifiers     OS specific usage of this file container (default is an empty string)
  * @property contentType    content type of this container (default value is 'STATIC')
  * @property types          deployment or environment types (default is an empty set)
- * @property classifiers     OS specific usage of this file container (default is an empty string)
  * @constructor provides a file item object of the component
  */
 data class FileItem @JvmOverloads constructor(
@@ -41,9 +41,10 @@ data class FileItem @JvmOverloads constructor(
 
         val targetPath: String = "",
 
+        override val classifier: String = "",
+
         @JsonDeserialize(using = ContentTypeDeserializer::class)
         override val contentType: ContentType = ContentType.IMMUTABLE,
+        override val types: MutableSet<String> = mutableSetOf()
 
-        override val types: MutableSet<String> = mutableSetOf(),
-        override val classifier: String = ""
 ) : ComponentItem, DeploymentItem, OSSpecificItem

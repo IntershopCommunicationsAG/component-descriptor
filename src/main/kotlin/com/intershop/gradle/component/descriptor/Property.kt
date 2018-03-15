@@ -26,19 +26,21 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  *
  * @property key property key of special deployment property
  * @property value property value of special deployment property
+ * @property classifiers    OS specific usage of this file (default is an empty set)
  *
  * @property contentType    content type of this file (default value is 'IMMUTABLE')
  * @property types          deployment or environment types (default is an empty set)
- * @property classifiers    OS specific usage of this file (default is an empty set)
  * @constructor provides a configured property object
  */
 data class Property @JvmOverloads constructor(
         val key: String,
         val value: String,
 
+        override val classifier: String = "",
+
         @JsonDeserialize(using = ContentTypeDeserializer::class)
         override val contentType: ContentType = ContentType.IMMUTABLE,
 
-        override val types: MutableSet<String> = mutableSetOf(),
-        override val classifier: String = ""
+        override val types: MutableSet<String> = mutableSetOf()
+
 ) : ComponentItem, DeploymentItem, OSSpecificItem
