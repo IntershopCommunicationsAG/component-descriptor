@@ -39,6 +39,7 @@ import com.intershop.gradle.component.descriptor.util.ComponentUtil
  * @property metadata metadata of the component (version and creation time)
  * @constructor provides the configured component object
  */
+@Suppress("unused")
 data class Component @JvmOverloads constructor(
         val displayName: String,
         val componentDescription: String,
@@ -90,13 +91,13 @@ data class Component @JvmOverloads constructor(
     /**
      * Add module to the module map with a special target.
      */
-    @Suppress("unused")
+    @Suppress("unused", "private")
     @Throws(InvalidTargetPathException::class)
     fun addModule(targetPath: String, module: Module) {
         if(modules.containsKey(targetPath)) {
             throw InvalidTargetPathException("TargetPath $targetPath is configured for an other module")
         }
-        if(modules.keys.filter { it.startsWith(targetPath) }.isNotEmpty()) {
+        if(modules.keys.any { it.startsWith(targetPath) }) {
             throw InvalidTargetPathException("Other modules are configured with the same targetPath $targetPath.")
         }
 

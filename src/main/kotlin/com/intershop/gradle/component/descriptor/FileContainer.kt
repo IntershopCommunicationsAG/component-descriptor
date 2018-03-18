@@ -37,6 +37,7 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  * @property classifier     OS specific usage of this file container (default is an empty string)
  * @constructor provides a file container object of the component
  */
+@Suppress("unused")
 data class FileContainer @JvmOverloads constructor(
         val name: String,
         override val targetPath: String,

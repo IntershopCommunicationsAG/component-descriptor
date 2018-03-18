@@ -30,7 +30,7 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  * @property extension      file extension
  * @property targetPath     target path of the file in an installed component (default is an empty string)
  *
- * @property classifiers     OS specific usage of this file container (default is an empty string)
+ * @property classifier     OS specific usage of this file container (default is an empty string)
  * @property contentType    content type of this container (default value is 'STATIC')
  * @property types          deployment or environment types (default is an empty set)
  * @constructor provides a file item object of the component
