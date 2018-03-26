@@ -101,7 +101,8 @@ data class Component @JvmOverloads constructor(
         if(modules.containsKey(targetPath)) {
             throw InvalidTargetPathException("TargetPath $targetPath is configured for an other module")
         }
-        if(modules.keys.any { it.startsWith(targetPath) && targetPath.substring(it.length - 1).matches(".*/.+".toRegex()) }) {
+        if(modules.keys.any { it.startsWith(targetPath) &&
+                            targetPath.substring(it.length - 1).matches(".*/.+".toRegex()) }) {
             throw InvalidTargetPathException("Other modules are configured with the same targetPath $targetPath.")
         }
 
