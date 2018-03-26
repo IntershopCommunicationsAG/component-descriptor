@@ -32,6 +32,7 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  *
  * @property classifier     OS specific usage of this file container (default is an empty string)
  * @property contentType    content type of this container (default value is 'STATIC')
+ * @property excludedFromUpdate If this value is true, the item will be not part of an update installation.
  * @property types          deployment or environment types (default is an empty set)
  * @constructor provides a file item object of the component
  */
@@ -45,6 +46,8 @@ data class FileItem @JvmOverloads constructor(
 
         @JsonDeserialize(using = ContentTypeDeserializer::class)
         override val contentType: ContentType = ContentType.IMMUTABLE,
+
+        override val excludedFromUpdate: Boolean = false,
         override val types: MutableSet<String> = mutableSetOf()
 
 ) : ComponentItem, DeploymentItem, OSSpecificItem

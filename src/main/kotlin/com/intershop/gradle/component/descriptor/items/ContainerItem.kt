@@ -30,4 +30,9 @@ interface ContainerItem {
      * Target path of the container item.
      */
     val targetPath: String
+
+    /**
+     * Exclude patterns for update installation.
+     */
+    val excludesFromUpdate: MutableSet<String>
 }

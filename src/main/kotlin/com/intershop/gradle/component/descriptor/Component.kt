@@ -36,9 +36,10 @@ import com.intershop.gradle.component.descriptor.util.ComponentUtil
  * @property fileContainers a set of all available file containers (zip files)
  * @property fileItems a set of all available fileitems (will be used as there are)
  * @property properties a set of properties, used for the configuration of the component
+ * @property excludesFromUpdate
  * @property metadata metadata of the component (version and creation time)
- * @constructor provides the configured component object
- */
+* @constructor provides the configured component object
+*/
 @Suppress("unused")
 data class Component @JvmOverloads constructor(
         val displayName: String,
@@ -58,6 +59,8 @@ data class Component @JvmOverloads constructor(
         val fileContainers: MutableSet<FileContainer> = mutableSetOf(),
         val fileItems: MutableSet<FileItem> = mutableSetOf(),
         val properties: MutableSet<Property> = mutableSetOf(),
+
+        val excludesFromUpdate: MutableSet<String> = mutableSetOf(),
 
         val metadata: MetaData = ComponentUtil.metadata
 ) : DeploymentItem {
@@ -98,7 +101,7 @@ data class Component @JvmOverloads constructor(
         if(modules.containsKey(targetPath)) {
             throw InvalidTargetPathException("TargetPath $targetPath is configured for an other module")
         }
-        if(modules.keys.any { it.startsWith(targetPath) }) {
+        if(modules.keys.any { it.startsWith(targetPath) && targetPath.substring(it.length - 1).matches(".*/.+".toRegex()) }) {
             throw InvalidTargetPathException("Other modules are configured with the same targetPath $targetPath.")
         }
 
