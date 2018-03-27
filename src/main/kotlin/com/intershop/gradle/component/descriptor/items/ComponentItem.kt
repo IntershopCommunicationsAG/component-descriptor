@@ -31,5 +31,5 @@ interface ComponentItem {
     /**
      * If this value is true, the item will be not part of an update installation.
      */
-    val excludedFromUpdate: Boolean
+    val excludeFromUpdate: Boolean
 }
