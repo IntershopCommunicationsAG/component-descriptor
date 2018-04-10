@@ -54,6 +54,8 @@ data class Component @JvmOverloads constructor(
         val containerTarget: String = "",
         val target: String = "",
 
+        val descriptorPath: String = "",
+
         val modules: MutableMap<String, Module> = mutableMapOf(),
         val libs: MutableMap<String, Library> = mutableMapOf(),
         val fileContainers: MutableSet<FileContainer> = mutableSetOf(),

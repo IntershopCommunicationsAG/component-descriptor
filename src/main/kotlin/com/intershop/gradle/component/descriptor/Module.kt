@@ -51,6 +51,9 @@ data class Module @JvmOverloads constructor(
         val pkgs: MutableSet<String> = mutableSetOf(),
         val jars: MutableSet<String> = mutableSetOf(),
 
+        val jarPath: String = "",
+        val descriptorPath: String = "",
+
         override val targetIncluded: Boolean = false,
 
         @JsonDeserialize(using = ContentTypeDeserializer::class)
