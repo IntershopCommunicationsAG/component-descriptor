@@ -28,9 +28,11 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  * @property name           module name
  * @property targetPath     target path of the module in an installed component
  * @property dependency     dependency object of the module
- *
+ * @property itemType       additional field for install process
  * @property pkgs           set of additional packages of this module (default is an empty set)
  * @property jars           set of additional jars of this module (default is an empty set)
+ * @property jarPath        install path for all jars
+ * @property descriptorPath install path for descriptor files
  *
  * @property targetIncluded if the target path is included in the file container it returns false
  *
@@ -50,6 +52,9 @@ data class Module @JvmOverloads constructor(
 
         val pkgs: MutableSet<String> = mutableSetOf(),
         val jars: MutableSet<String> = mutableSetOf(),
+
+        val jarPath: String = "",
+        val descriptorPath: String = "",
 
         override val targetIncluded: Boolean = false,
 
