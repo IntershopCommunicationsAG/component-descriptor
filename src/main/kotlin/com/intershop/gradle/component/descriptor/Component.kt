@@ -25,18 +25,20 @@ import com.intershop.gradle.component.descriptor.util.ComponentUtil
  *
  * @property displayName display name of the component
  * @property componentDescription description of the component
- * @property modulesTarget installation target of all specified modules
  * @property types all supported types of this component
  * @property classifiers all supported classifiers/OS
+ * @property modulesTarget installation target of all specified modules
  * @property libsTarget installation target of all component libraries
  * @property fileTarget installation target of all single files
  * @property containerTarget installation target of all containers
+ * @property target preconfigured install target of the component
+ * @property descriptorPath path for the descriptor storage
  * @property modules map of all modules of the component. The key describes the target path in the component.
  * @property libs map of all libraries. The key is the target name on the file system.
  * @property fileContainers a set of all available file containers (zip files)
  * @property fileItems a set of all available fileitems (will be used as there are)
  * @property properties a set of properties, used for the configuration of the component
- * @property excludesFromUpdate
+ * @property excludesFromUpdate a set of file pattern to exclude from update
  * @property metadata metadata of the component (version and creation time)
 * @constructor provides the configured component object
 */
