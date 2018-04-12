@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.intershop.gradle.component.descriptor.Component
+import com.intershop.gradle.component.descriptor.Dependency
 import com.intershop.gradle.component.descriptor.MetaData
 import com.intershop.gradle.component.descriptor.exceptions.ComponentReadException
 import com.intershop.gradle.component.descriptor.exceptions.ComponentWriteException
@@ -110,9 +111,9 @@ object ComponentUtil {
      * @property metadata provides a meta data object the current time in
      * milli seconds and the version of the descriptor
      */
-    val metadata: MetaData
-        get() = MetaData(System.currentTimeMillis(), version)
-
+    fun metadata(group:String, module: String, version: String) : MetaData {
+        return MetaData(System.currentTimeMillis(), this.version, Dependency(group, module, version))
+    }
 
     /**
      * Reads data from meta data of the descriptor file.
@@ -126,6 +127,12 @@ object ComponentUtil {
 
         val metadata = rootNode.get("metadata")
 
-        return MetaData(metadata.get("creation").longValue(), metadata.get("version").textValue())
+        return MetaData(
+                metadata.get("creation").longValue(),
+                metadata.get("version").textValue(),
+                Dependency(
+                    metadata.get("componentID")?.get("group")?.textValue() ?: "",
+                    metadata.get("componentID")?.get("module")?.textValue() ?: "",
+                    metadata.get("componentID")?.get("version")?.textValue() ?: ""))
     }
 }
