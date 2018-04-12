@@ -20,7 +20,9 @@ package com.intershop.gradle.component.descriptor
  *
  * @property creation creation date in milliseconds
  * @property version  version string of the descriptor schema
+ * @property componentID dependency descriptor of this component
  * @constructor provides a metadata object
  */
 data class MetaData(val creation: Long,
-                    val version: String)
+                    val version: String,
+                    val componentID: Dependency)

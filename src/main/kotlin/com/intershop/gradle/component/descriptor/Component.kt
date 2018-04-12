@@ -29,7 +29,6 @@ import com.intershop.gradle.component.descriptor.util.ComponentUtil
  * @property classifiers all supported classifiers/OS
  * @property modulesTarget installation target of all specified modules
  * @property libsTarget installation target of all component libraries
- * @property fileTarget installation target of all single files
  * @property containerTarget installation target of all containers
  * @property target preconfigured install target of the component
  * @property descriptorPath path for the descriptor storage
@@ -52,7 +51,6 @@ data class Component @JvmOverloads constructor(
 
         val modulesTarget: String = "modules",
         val libsTarget: String = "libs",
-        val fileTarget: String = "properties",
         val containerTarget: String = "",
         val target: String = "",
 
@@ -66,7 +64,7 @@ data class Component @JvmOverloads constructor(
 
         val excludesFromUpdate: MutableSet<String> = mutableSetOf(),
 
-        val metadata: MetaData = ComponentUtil.metadata
+        val metadata: MetaData = ComponentUtil.metadata("","","")
 ) : DeploymentItem {
 
     companion object {
