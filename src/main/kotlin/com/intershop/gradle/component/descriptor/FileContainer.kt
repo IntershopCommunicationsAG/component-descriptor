@@ -35,7 +35,7 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  * @property contentType    content type of this container (default value is 'STATIC')
  * @property excludes       Exclude patterns for update installation.
  * @property preserves      Preserve pattern for update installation.
- * @property isUpdatable    If this value is false, the item will be not part of an update installation.
+ * @property updatable    If this value is false, the item will be not part of an update installation.
  * @property types          deployment or environment types (default is an empty set)
  * @property classifier     OS specific usage of this file container (default is an empty string)
  * @constructor provides a file container object of the component
@@ -55,7 +55,7 @@ data class FileContainer @JvmOverloads constructor(
 
         override val excludes: MutableSet<String> = mutableSetOf(),
         override val preserves: MutableSet<String> = mutableSetOf(),
-        override val isUpdatable: Boolean = true,
+        override val updatable: Boolean = true,
         override val types: MutableSet<String> = mutableSetOf()
 
 ) : ComponentItem, DeploymentItem, ContainerItem, OSSpecificItem
