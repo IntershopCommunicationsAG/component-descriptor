@@ -37,7 +37,8 @@ import com.intershop.gradle.component.descriptor.util.ComponentUtil
  * @property fileContainers a set of all available file containers (zip files)
  * @property fileItems a set of all available fileitems (will be used as there are)
  * @property properties a set of properties, used for the configuration of the component
- * @property excludesFromUpdate a set of file pattern to exclude from update
+ * @property excludes a set of file pattern to exclude from installation
+ * @property preserves      a set of file  pattern to preserve files from update.
  * @property metadata metadata of the component (version and creation time)
 * @constructor provides the configured component object
 */
@@ -62,7 +63,8 @@ data class Component @JvmOverloads constructor(
         val fileItems: MutableSet<FileItem> = mutableSetOf(),
         val properties: MutableSet<Property> = mutableSetOf(),
 
-        val excludesFromUpdate: MutableSet<String> = mutableSetOf(),
+        val excludes: MutableSet<String> = mutableSetOf(),
+        val preserves: MutableSet<String> = mutableSetOf(),
 
         val metadata: MetaData = ComponentUtil.metadata("","","")
 ) : DeploymentItem {
