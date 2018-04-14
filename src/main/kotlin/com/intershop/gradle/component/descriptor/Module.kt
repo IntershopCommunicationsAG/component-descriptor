@@ -37,8 +37,9 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  * @property targetIncluded if the target path is included in the file container it returns false
  *
  * @property contentType    content type of this container (default value is 'STATIC')
- * @property excludesFromUpdate Exclude patterns for update installation.
- * @property excludeFromUpdate If this value is true, the item will be not part of an update installation.
+ * @property excludes       Exclude patterns for update installation.
+ * @property preserves      Preserve pattern for update installation.
+ * @property updatable    If this value is false, the item will be not part of an update installation.
  * @property types          deployment or environment types (default is an empty set)
  * @property classifiers    OS specific usage of this file container (default is an empty set)
  * @constructor provides a module object of the component
@@ -61,8 +62,9 @@ data class Module @JvmOverloads constructor(
         @JsonDeserialize(using = ContentTypeDeserializer::class)
         override val contentType: ContentType = ContentType.IMMUTABLE,
 
-        override val excludesFromUpdate: MutableSet<String> = mutableSetOf(),
-        override val excludeFromUpdate: Boolean = false,
+        override val excludes: MutableSet<String> = mutableSetOf(),
+        override val preserves: MutableSet<String> = mutableSetOf(),
+        override val updatable: Boolean = false,
         override val types: MutableSet<String> = mutableSetOf(),
         val classifiers: MutableSet<String> = mutableSetOf()
 ) : ComponentItem, DeploymentItem, ContainerItem
