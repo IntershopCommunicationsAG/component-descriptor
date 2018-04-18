@@ -37,7 +37,12 @@ interface ContainerItem {
     val excludes: MutableSet<String>
 
     /**
-     * Preserve pattern for update installation.
+     * Preserve exclude pattern for update installation.
      */
-    val preserves: MutableSet<String>
+    val preserveExcludes: MutableSet<String>
+
+    /**
+     * Preserve include pattern for update installation.
+     */
+    val preserveIncludes: MutableSet<String>
 }

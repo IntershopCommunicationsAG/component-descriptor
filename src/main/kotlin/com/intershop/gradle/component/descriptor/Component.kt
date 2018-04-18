@@ -64,7 +64,8 @@ data class Component @JvmOverloads constructor(
         val properties: MutableSet<Property> = mutableSetOf(),
 
         val excludes: MutableSet<String> = mutableSetOf(),
-        val preserves: MutableSet<String> = mutableSetOf(),
+        val preserveExcludes: MutableSet<String> = mutableSetOf(),
+        val preserveIncludes: MutableSet<String> = mutableSetOf(),
 
         val metadata: MetaData = ComponentUtil.metadata("","","")
 ) : DeploymentItem {

@@ -54,7 +54,8 @@ data class FileContainer @JvmOverloads constructor(
         override val contentType: ContentType = ContentType.IMMUTABLE,
 
         override val excludes: MutableSet<String> = mutableSetOf(),
-        override val preserves: MutableSet<String> = mutableSetOf(),
+        override val preserveExcludes: MutableSet<String> = mutableSetOf(),
+        override val preserveIncludes: MutableSet<String> = mutableSetOf(),
         override val updatable: Boolean = true,
         override val types: MutableSet<String> = mutableSetOf()
 
