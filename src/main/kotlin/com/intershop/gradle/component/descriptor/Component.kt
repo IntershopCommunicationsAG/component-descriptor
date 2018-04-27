@@ -177,6 +177,28 @@ data class Component @JvmOverloads constructor(
     }
 
     /**
+     * Add a link configuration to the set of links.
+     *
+     * @param link link item configuration.
+     * @return false if the link name is available in the list.
+     */
+    @Suppress("unused")
+    fun addLinkItem(link: Link) : Boolean {
+        return linkItems.add(link)
+    }
+
+    /**
+     * Add a directory to the list of directories.
+     *
+     * @param directory data of a directory configuration.
+     * @return false if directory item is available in the list.
+     */
+    @Suppress("unused")
+    fun addDirectory(directory: Directory) : Boolean {
+        return directoryItems.add(directory)
+    }
+
+    /**
      * Add property item to set of properties.
      *
      * @param property data of a property item

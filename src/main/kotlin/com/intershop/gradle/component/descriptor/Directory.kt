@@ -26,7 +26,7 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  * This is the description of a directory configuration of
  * a component. The content type is per default DATA.
  *
- * @property dirPath           path of the directory in the component.
+ * @property targetPath           path of the directory in the component.
  *
  * @property classifier     OS specific usage of this file container (default is an empty string)
  * @property contentType    content type of this container (default value is 'STATIC')
@@ -36,7 +36,7 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  **/
 data class Directory @JvmOverloads constructor(
 
-        val dirPath: String,
+        val targetPath: String,
 
         override val classifier: String = "",
 
