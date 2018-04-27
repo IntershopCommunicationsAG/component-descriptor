@@ -27,18 +27,21 @@ import com.intershop.gradle.component.descriptor.util.ComponentUtil
  * @property componentDescription description of the component
  * @property types all supported types of this component
  * @property classifiers all supported classifiers/OS
- * @property modulesTarget installation target of all specified modules
- * @property libsTarget installation target of all component libraries
- * @property containerTarget installation target of all containers
+ * @property modulesPath installation target of all specified modules
+ * @property libsPath installation target of all component libraries
+ * @property containerPath installation target of all containers
  * @property target preconfigured install target of the component
  * @property descriptorPath path for the descriptor storage
  * @property modules map of all modules of the component. The key describes the target path in the component.
  * @property libs map of all libraries. The key is the target name on the file system.
  * @property fileContainers a set of all available file containers (zip files)
  * @property fileItems a set of all available fileitems (will be used as there are)
+ * @property linkItems a set of link configurations
+ * @property directoryItems a set of directory paths
  * @property properties a set of properties, used for the configuration of the component
  * @property excludes a set of file pattern to exclude from installation
- * @property preserves      a set of file  pattern to preserve files from update.
+ * @property preserveExcludes      a set of file pattern to exclude files from preserve during update.
+ * @property preserveIncludes      a set of file pattern to include files to preserve during update.
  * @property metadata metadata of the component (version and creation time)
 * @constructor provides the configured component object
 */
@@ -50,9 +53,9 @@ data class Component @JvmOverloads constructor(
         override val types: MutableSet<String> = mutableSetOf(),
         val classifiers: MutableSet<String> = mutableSetOf(),
 
-        val modulesTarget: String = "modules",
-        val libsTarget: String = "libs",
-        val containerTarget: String = "",
+        val modulesPath: String = "modules",
+        val libsPath: String = "libs",
+        val containerPath: String = "",
         val target: String = "",
 
         val descriptorPath: String = "",
@@ -61,6 +64,8 @@ data class Component @JvmOverloads constructor(
         val libs: MutableMap<String, Library> = mutableMapOf(),
         val fileContainers: MutableSet<FileContainer> = mutableSetOf(),
         val fileItems: MutableSet<FileItem> = mutableSetOf(),
+        val linkItems: MutableSet<Link> = mutableSetOf(),
+        val directoryItems: MutableSet<Directory> = mutableSetOf(),
         val properties: MutableSet<Property> = mutableSetOf(),
 
         val excludes: MutableSet<String> = mutableSetOf(),
@@ -169,6 +174,28 @@ data class Component @JvmOverloads constructor(
     @Suppress("unused")
     fun addFileItem(fileItem: FileItem) : Boolean {
         return fileItems.add(fileItem)
+    }
+
+    /**
+     * Add a link configuration to the set of links.
+     *
+     * @param link link item configuration.
+     * @return false if the link name is available in the list.
+     */
+    @Suppress("unused")
+    fun addLinkItem(link: Link) : Boolean {
+        return linkItems.add(link)
+    }
+
+    /**
+     * Add a directory to the list of directories.
+     *
+     * @param directory data of a directory configuration.
+     * @return false if directory item is available in the list.
+     */
+    @Suppress("unused")
+    fun addDirectory(directory: Directory) : Boolean {
+        return directoryItems.add(directory)
     }
 
     /**

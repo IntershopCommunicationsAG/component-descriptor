@@ -34,7 +34,8 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  *
  * @property contentType    content type of this container (default value is 'STATIC')
  * @property excludes       Exclude patterns for update installation.
- * @property preserves      Preserve pattern for update installation.
+ * @property preserveExcludes      a set of file pattern to exclude files from preserve during update.
+ * @property preserveIncludes      a set of file pattern to include files to preserve during update.
  * @property updatable    If this value is false, the item will be not part of an update installation.
  * @property types          deployment or environment types (default is an empty set)
  * @property classifier     OS specific usage of this file container (default is an empty string)

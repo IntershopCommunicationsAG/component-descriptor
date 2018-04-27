@@ -23,29 +23,25 @@ import com.intershop.gradle.component.descriptor.items.OSSpecificItem
 import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
 
 /**
- * This is the description of a single file of
- * a component.
+ * This is the description of a directory configuration of
+ * a component. The content type is per default DATA.
  *
- * @property name           file name
- * @property extension      file extension
- * @property targetPath     target path of the file in an installed component (default is an empty string)
+ * @property targetPath           path of the directory in the component.
  *
  * @property classifier     OS specific usage of this file container (default is an empty string)
  * @property contentType    content type of this container (default value is 'STATIC')
  * @property updatable If this value is true, the item will be not part of an update installation.
  * @property types          deployment or environment types (default is an empty set)
- * @constructor provides a file item object of the component
- */
-data class FileItem @JvmOverloads constructor(
-        val name: String = "",
-        val extension: String = "",
+ * @constructor provides a directory configuration object of the component
+ **/
+data class Directory @JvmOverloads constructor(
 
-        val targetPath: String = "",
+        val targetPath: String,
 
         override val classifier: String = "",
 
         @JsonDeserialize(using = ContentTypeDeserializer::class)
-        override val contentType: ContentType = ContentType.IMMUTABLE,
+        override val contentType: ContentType = ContentType.DATA,
 
         override val updatable: Boolean = false,
         override val types: MutableSet<String> = mutableSetOf()

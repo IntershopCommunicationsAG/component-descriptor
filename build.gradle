@@ -17,13 +17,13 @@ plugins {
     // project plugins
     id 'java'
     id 'groovy'
-    id 'nebula.kotlin' version '1.2.30'
+    id 'nebula.kotlin' version '1.2.40'
 
     // documentation
     id "org.jetbrains.dokka" version "0.9.16"
 
     // code analysis for kotlin
-    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC6-3"
+    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC6-4"
 
     // test coverage
     id 'jacoco'
@@ -38,7 +38,7 @@ plugins {
     id 'com.intershop.gradle.scmversion' version '3.4.0'
 
     // plugin for documentation
-    id 'org.asciidoctor.convert' version '1.5.3'
+    id 'org.asciidoctor.convert' version '1.5.7'
 
     // plugin for publishing to jcenter
     id 'com.jfrog.bintray' version '1.8.0'

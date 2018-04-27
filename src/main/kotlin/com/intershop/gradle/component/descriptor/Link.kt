@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.intershop.gradle.component.descriptor
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
@@ -23,23 +22,20 @@ import com.intershop.gradle.component.descriptor.items.OSSpecificItem
 import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
 
 /**
- * This is the description of a single file of
+ * This is the description of a link configuration of
  * a component.
  *
- * @property name           file name
- * @property extension      file extension
- * @property targetPath     target path of the file in an installed component (default is an empty string)
+ * @property name           name of the link. If the link starts with an / it is an absolute path.
+ * @property targetPath     a path in the component, that must exists.
  *
  * @property classifier     OS specific usage of this file container (default is an empty string)
  * @property contentType    content type of this container (default value is 'STATIC')
  * @property updatable If this value is true, the item will be not part of an update installation.
  * @property types          deployment or environment types (default is an empty set)
- * @constructor provides a file item object of the component
- */
-data class FileItem @JvmOverloads constructor(
+ * @constructor provides a link configuration object of the component
+ **/
+data class Link @JvmOverloads constructor(
         val name: String = "",
-        val extension: String = "",
-
         val targetPath: String = "",
 
         override val classifier: String = "",
@@ -49,5 +45,4 @@ data class FileItem @JvmOverloads constructor(
 
         override val updatable: Boolean = false,
         override val types: MutableSet<String> = mutableSetOf()
-
-) : DeploymentItem, ComponentItem, OSSpecificItem
+) : ComponentItem, DeploymentItem,OSSpecificItem
