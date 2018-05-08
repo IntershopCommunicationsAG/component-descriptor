@@ -26,6 +26,8 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  *
  * @property key property key of special deployment property
  * @property value property value of special deployment property
+ * @property pattern a file pattern for the installed files, that should be adapted
+ *
  * @property classifier    OS specific usage of this file (default is an empty set)
  *
  * @property contentType    content type of this file (default value is 'IMMUTABLE')
@@ -37,6 +39,8 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
 data class Property @JvmOverloads constructor(
         val key: String,
         val value: String,
+
+        val pattern: String,
 
         override val classifier: String = "",
 
