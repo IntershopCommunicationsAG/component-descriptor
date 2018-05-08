@@ -162,9 +162,9 @@ class ComponentSpec extends Specification {
         given:
         def file = new File(testProjectDir, "component.descr")
         def componentIn = new Component('TestComponent', "Component for tests")
-        componentIn.addProperty(new Property('com.intershop.test1', 'value1'))
-        componentIn.addProperty(new Property('com.intershop.test1', 'value1'))
-        componentIn.addProperty(new Property('com.intershop.test2', 'value2'))
+        componentIn.addProperty(new Property('com.intershop.test1', 'value1', "**/**/file.properties"))
+        componentIn.addProperty(new Property('com.intershop.test1', 'value1', "**/**/file.properties"))
+        componentIn.addProperty(new Property('com.intershop.test2', 'value2', "**/**/file.properties"))
 
         when:
         ComponentUtil.INSTANCE.writeToFile(componentIn, file)
