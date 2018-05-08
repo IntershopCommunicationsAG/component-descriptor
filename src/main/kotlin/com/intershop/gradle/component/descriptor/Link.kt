@@ -18,7 +18,6 @@ package com.intershop.gradle.component.descriptor
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.intershop.gradle.component.descriptor.items.ComponentItem
 import com.intershop.gradle.component.descriptor.items.DeploymentItem
-import com.intershop.gradle.component.descriptor.items.OSSpecificItem
 import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
 
 /**
@@ -28,21 +27,20 @@ import com.intershop.gradle.component.descriptor.json.ContentTypeDeserializer
  * @property name           name of the link. If the link starts with an / it is an absolute path.
  * @property targetPath     a path in the component, that must exists.
  *
- * @property classifier     OS specific usage of this file container (default is an empty string)
  * @property contentType    content type of this container (default value is 'STATIC')
  * @property updatable If this value is true, the item will be not part of an update installation.
  * @property types          deployment or environment types (default is an empty set)
+ * @property classifiers     OS specific usage of this link (default is an empty set)
  * @constructor provides a link configuration object of the component
  **/
 data class Link @JvmOverloads constructor(
         val name: String = "",
         val targetPath: String = "",
 
-        override val classifier: String = "",
-
         @JsonDeserialize(using = ContentTypeDeserializer::class)
         override val contentType: ContentType = ContentType.IMMUTABLE,
 
         override val updatable: Boolean = false,
-        override val types: MutableSet<String> = mutableSetOf()
-) : ComponentItem, DeploymentItem,OSSpecificItem
+        override val types: MutableSet<String> = mutableSetOf(),
+        val classifiers: MutableSet<String> = mutableSetOf()
+) : ComponentItem, DeploymentItem
