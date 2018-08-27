@@ -67,6 +67,7 @@ data class Component @JvmOverloads constructor(
         val linkItems: MutableSet<Link> = mutableSetOf(),
         val directoryItems: MutableSet<Directory> = mutableSetOf(),
         val properties: MutableSet<Property> = mutableSetOf(),
+        val permissionConfig: MutableSet<PermissionConfig> = mutableSetOf(),
 
         val excludes: MutableSet<String> = mutableSetOf(),
         val preserveExcludes: MutableSet<String> = mutableSetOf(),
@@ -207,5 +208,16 @@ data class Component @JvmOverloads constructor(
     @Suppress("unused")
     fun addProperty(property: Property): Boolean {
         return properties.add(property)
+    }
+
+    /**
+     * Add permission to the set of permissions.
+     *
+     * @param permissions Permission configuration for a file or directory
+     * @return false if the configuration is part of the list
+     */
+    @Suppress("unused")
+    fun addPermissionConf(permissionconf: PermissionConfig) : Boolean {
+        return permissionConfig.add(permissionconf)
     }
 }
